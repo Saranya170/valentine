@@ -19,32 +19,25 @@ body{
 }
 
 .card{
-  background:white;
-  padding:35px;
-  border-radius:28px;
+  background:#fff;
+  padding:32px;
+  border-radius:26px;
   text-align:center;
   box-shadow:0 15px 35px rgba(0,0,0,0.25);
   width:320px;
-  z-index:2;
 }
 
-/* Image */
 .photo{
   width:180px;
-  margin-bottom:15px;
-  animation:pulse 2s infinite;
-}
-
-@keyframes pulse{
-  0%{transform:scale(1);}
-  50%{transform:scale(1.05);}
-  100%{transform:scale(1);}
+  margin-bottom:14px;
+  border-radius:16px;
 }
 
 h1{
   font-family:'Playfair Display',serif;
   font-size:28px;
   color:#ff2f6e;
+  line-height:1.3;
 }
 
 .name{
@@ -69,7 +62,7 @@ button{
 
 #yes{
   background:#ff2f6e;
-  color:white;
+  color:#fff;
 }
 
 #no{
@@ -77,7 +70,6 @@ button{
   position:absolute;
 }
 
-/* Hearts */
 .heart{
   position:fixed;
   bottom:-20px;
@@ -96,16 +88,16 @@ button{
 
 <body>
 
-<!-- Music -->
+<!-- 🎵 Music -->
 <audio id="music" loop>
   <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_9c1a7f1f36.mp3?filename=romantic-love-ambient-110397.mp3" type="audio/mpeg">
 </audio>
 
 <div class="card">
 
-  <!-- ✅ WORKING BUBU DUDU KISS IMAGE -->
+  <!-- 💋 Bubu Dudu Kiss Image -->
   <img
-    src="https://i.imgur.com/2yaf2wb.png"
+    src="https://media.tenor.com/9fY6xJ3mX2UAAAAC/bubu-dudu-kiss.gif"
     alt="Bubu Dudu Kiss"
     class="photo"
   >
@@ -115,9 +107,11 @@ button{
     will you be my Valentine, forever? ❤️
   </h1>
 
+  <!-- 📅 DATE FORMAT AS YOU ASKED -->
   <div class="date">
-    14 February 2026 💘<br>
-    <strong>Our 8<sup>th</sup> Valentine’s Day</strong>
+    <strong>Today</strong><br>
+    14<sup>th</sup> February 2026 💘<br>
+    <strong>Our special 9<sup>th</sup> Valentine’s Day</strong>
   </div>
 
   <br>
@@ -126,12 +120,14 @@ button{
 </div>
 
 <script>
+// 🔹 Move NO button
 function moveNo(){
   const no = document.getElementById("no");
   no.style.left = Math.random() * (window.innerWidth - 120) + "px";
   no.style.top  = Math.random() * (window.innerHeight - 60) + "px";
 }
 
+// 🔹 YES click action
 function yesClick(){
   document.getElementById("music").play();
 
@@ -148,15 +144,16 @@ function yesClick(){
       font-family:'Playfair Display',serif;">
       <h1 style="font-size:40px;">You're very lucky 💖</h1>
       <p style="font-size:20px;">Because you have me forever 😘💍</p>
-      <p>Happy 8th Valentine’s Day ❤️</p>
+      <p>Happy 9th Valentine’s Day ❤️</p>
     </div>
   `;
 
-  for(let i=0;i<60;i++){
-    setTimeout(createHeart, i*100);
+  for(let i=0;i<70;i++){
+    setTimeout(createHeart, i*80);
   }
 }
 
+// 🔹 Hearts animation
 function createHeart(){
   const heart = document.createElement("div");
   heart.className = "heart";
