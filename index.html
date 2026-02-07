@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>My Valentine ❤️</title>
 
-<!-- Stylish Fonts -->
+<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Poppins:wght@500&display=swap" rel="stylesheet">
 
 <style>
@@ -22,23 +22,36 @@ body{
 /* Card */
 .card{
   background:white;
-  padding:40px;
+  padding:35px;
   border-radius:28px;
   text-align:center;
   box-shadow:0 15px 35px rgba(0,0,0,0.25);
   z-index:2;
 }
 
+/* Bubu Dudu kiss image */
+.photo{
+  width:180px;
+  margin-bottom:15px;
+}
+
 /* Heading */
 h1{
   font-family:'Playfair Display',serif;
-  font-size:34px;
+  font-size:32px;
   color:#ff2f6e;
   line-height:1.3;
 }
 .name{
   font-weight:800;
   color:#c2185b;
+}
+
+/* Date text */
+.date{
+  margin-top:10px;
+  font-size:16px;
+  color:#555;
 }
 
 /* Buttons */
@@ -58,7 +71,7 @@ button{
   position:absolute;
 }
 
-/* Hearts */
+/* Hearts animation */
 .heart{
   position:fixed;
   bottom:-20px;
@@ -76,55 +89,13 @@ button{
 
 <body>
 
+<!-- 🎵 Romantic music -->
+<audio id="bgMusic" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_9c1a7f1f36.mp3?filename=romantic-love-ambient-110397.mp3" type="audio/mpeg">
+</audio>
+
 <div class="card">
-  <h1>
-    <span class="name">Mr. Manivannan</span>,<br>
-    will you be my Valentine, forever? ❤️
-  </h1>
-  <br>
-  <button id="yes" onclick="yesClick()">Yes 💖</button>
-  <button id="no" onmouseover="moveNo()">No 🙈</button>
-</div>
 
-<script>
-function moveNo(){
-  const no = document.getElementById("no");
-  no.style.left = Math.random() * (window.innerWidth - 120) + "px";
-  no.style.top  = Math.random() * (window.innerHeight - 60) + "px";
-}
-
-function yesClick(){
-  document.body.innerHTML = `
-    <div style="
-      height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      flex-direction:column;
-      background:#ff5f9e;
-      color:white;
-      font-family:'Playfair Display',serif;
-      text-align:center;">
-      <h1 style="font-size:42px;">You're very lucky 💖</h1>
-      <p style="font-size:20px;">Because you have me forever 😘💍</p>
-    </div>
-  `;
-
-  for(let i=0;i<45;i++){
-    setTimeout(createHeart, i*100);
-  }
-}
-
-function createHeart(){
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "❤️";
-  heart.style.left = Math.random()*100 + "vw";
-  heart.style.fontSize = (20 + Math.random()*25) + "px";
-  document.body.appendChild(heart);
-  setTimeout(()=>heart.remove(),4000);
-}
-</script>
-
-</body>
-</html>
+  <!-- 💋 Bubu Dudu Kiss Image -->
+  <img 
+    src="https://i.pinimg.com/originals/9f/2c/9d/9f2c9d8f6c5c8f5c1b4c9f1
