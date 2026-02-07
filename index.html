@@ -2,92 +2,69 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Valentine Proposal 💖</title>
+<title>Valentine 💖</title>
 
 <style>
 body{
-    margin:0;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
-    font-family: 'Segoe UI', sans-serif;
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+  font-family:'Segoe UI',sans-serif;
 }
 
 .card{
-    background:#fff;
-    padding:30px;
-    width:320px;
-    border-radius:20px;
-    text-align:center;
-    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+  background:white;
+  width:320px;
+  padding:30px;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
 }
 
 h1{
-    color:#c2185b;
-    font-size:22px;
-    font-weight:bold;
+  color:#c2185b;
+  font-size:22px;
+  font-weight:bold;
 }
 
-.today{
-    font-weight:bold;
-    margin-top:15px;
+.heart{
+  font-size:60px;
+  animation:spin 2s linear infinite;
+  margin:15px 0;
 }
 
-.date{
-    font-size:16px;
-    margin:5px 0;
+@keyframes spin{
+  from{transform:rotate(0deg);}
+  to{transform:rotate(360deg);}
 }
 
-.valentine{
-    font-weight:bold;
-    margin-top:8px;
-}
-
-img{
-    width:120px;
-    margin:15px 0;
-}
-
-.buttons{
-    margin-top:20px;
-}
+.today{font-weight:bold;}
+.valentine{font-weight:bold; margin-top:5px;}
 
 button{
-    padding:10px 20px;
-    border:none;
-    border-radius:20px;
-    font-size:16px;
-    cursor:pointer;
+  padding:10px 22px;
+  font-size:16px;
+  border:none;
+  border-radius:20px;
+  cursor:pointer;
 }
 
-.yes{
-    background:#e91e63;
-    color:white;
+.yes{background:#e91e63;color:white;}
+.no{background:#ccc;position:absolute;}
+
+.hearts span{
+  position:fixed;
+  bottom:0;
+  font-size:20px;
+  animation:float 4s linear infinite;
 }
 
-.no{
-    background:#ccc;
-    position:absolute;
-}
-.hearts{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    pointer-events:none;
-}
-.heart{
-    position:absolute;
-    color:red;
-    font-size:20px;
-    animation:float 4s linear infinite;
-}
 @keyframes float{
-    from{transform:translateY(100vh); opacity:1;}
-    to{transform:translateY(-10vh); opacity:0;}
+  from{transform:translateY(0);opacity:1;}
+  to{transform:translateY(-100vh);opacity:0;}
 }
 </style>
 </head>
@@ -95,49 +72,63 @@ button{
 <body>
 
 <div class="card">
-    <h1>Mr. Manivannan,<br>will you be my Valentine, forever? ❤️</h1>
+  <h1>
+    Mr. Manivannan,<br>
+    will you be my Valentine, forever? ❤️
+  </h1>
 
-    <div class="today">Today</div>
-    <div class="date">14th February 2026</div>
-    <div class="valentine">Our special 9th Valentine’s Day</div>
+  <div class="heart">❤️</div>
 
-    <!-- Bubu Dudu Kiss Image -->
-    <img src="https://media.tenor.com/8EJf7nH0vVYAAAAC/bubu-dudu-kiss.gif">
+  <div class="today">Today</div>
+  <div>14th February 2026</div>
+  <div class="valentine">Our special 9th Valentine’s Day</div>
 
-    <div class="buttons">
-        <button class="yes" onclick="sayYes()">Yes 💖</button>
-        <button class="no" onmouseover="moveNo()">No 🙈</button>
-    </div>
+  <br>
+  <button class="yes" onclick="yesClick()">Yes 💖</button>
+  <button class="no" onmouseover="moveNo()">No 🙈</button>
 </div>
 
 <div class="hearts" id="hearts"></div>
 
-<!-- AUDIO -->
-<audio id="song">
-    <source src="https://dl.dropboxusercontent.com/scl/fi/8p4k3d1d3x4gq/appappa.mp3?rlkey=demo&raw=1" type="audio/mpeg">
-</audio>
-
 <script>
 function moveNo(){
-    const noBtn=document.querySelector('.no');
-    noBtn.style.left=Math.random()*80+'%';
-    noBtn.style.top=Math.random()*80+'%';
+  const no=document.querySelector('.no');
+  no.style.left=Math.random()*80+'%';
+  no.style.top=Math.random()*80+'%';
 }
 
-function sayYes(){
-    document.getElementById("song").play();
+function yesClick(){
+  playMusic();
+  createHearts();
+  alert("You are my forever Valentine 💖");
+}
 
-    for(let i=0;i<30;i++){
-        const heart=document.createElement("div");
-        heart.className="heart";
-        heart.innerHTML="❤️";
-        heart.style.left=Math.random()*100+"%";
-        heart.style.fontSize=(20+Math.random()*20)+"px";
-        document.getElementById("hearts").appendChild(heart);
-        setTimeout(()=>heart.remove(),4000);
-    }
+/* GUARANTEED MUSIC */
+function playMusic(){
+  const ctx=new (window.AudioContext||window.webkitAudioContext)();
+  const osc=ctx.createOscillator();
+  const gain=ctx.createGain();
 
-    alert("You are very lucky ❤️💖");
+  osc.type='sine';
+  osc.frequency.setValueAtTime(440,ctx.currentTime); // sweet tone
+  gain.gain.setValueAtTime(0.3,ctx.currentTime);
+
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+
+  osc.start();
+  osc.stop(ctx.currentTime+1.2);
+}
+
+/* HEART RAIN */
+function createHearts(){
+  for(let i=0;i<20;i++){
+    const h=document.createElement('span');
+    h.innerHTML='💖';
+    h.style.left=Math.random()*100+'%';
+    document.getElementById('hearts').appendChild(h);
+    setTimeout(()=>h.remove(),4000);
+  }
 }
 </script>
 
