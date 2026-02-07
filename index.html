@@ -2,173 +2,142 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>My Valentine ❤️</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Poppins:wght@500&display=swap" rel="stylesheet">
+<title>Valentine Proposal 💖</title>
 
 <style>
 body{
-  margin:0;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:linear-gradient(135deg,#ff5f9e,#ffc371);
-  font-family:'Poppins',sans-serif;
-  overflow:hidden;
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+    font-family: 'Segoe UI', sans-serif;
 }
 
 .card{
-  background:white;
-  padding:32px;
-  border-radius:26px;
-  text-align:center;
-  box-shadow:0 15px 35px rgba(0,0,0,0.25);
-  width:320px;
-}
-
-.photo{
-  width:180px;
-  margin-bottom:14px;
-  border-radius:16px;
+    background:#fff;
+    padding:30px;
+    width:320px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
 }
 
 h1{
-  font-family:'Playfair Display',serif;
-  font-size:28px;
-  color:#ff2f6e;
-  line-height:1.3;
+    color:#c2185b;
+    font-size:22px;
+    font-weight:bold;
 }
 
-.name{
-  font-weight:800;
-  color:#c2185b;
+.today{
+    font-weight:bold;
+    margin-top:15px;
 }
 
 .date{
-  margin-top:8px;
-  font-size:15px;
-  color:#555;
+    font-size:16px;
+    margin:5px 0;
+}
+
+.valentine{
+    font-weight:bold;
+    margin-top:8px;
+}
+
+img{
+    width:120px;
+    margin:15px 0;
+}
+
+.buttons{
+    margin-top:20px;
 }
 
 button{
-  padding:12px 28px;
-  font-size:16px;
-  border:none;
-  border-radius:30px;
-  cursor:pointer;
-  margin:10px;
+    padding:10px 20px;
+    border:none;
+    border-radius:20px;
+    font-size:16px;
+    cursor:pointer;
 }
 
-#yes{
-  background:#ff2f6e;
-  color:white;
+.yes{
+    background:#e91e63;
+    color:white;
 }
 
-#no{
-  background:#ddd;
-  position:absolute;
+.no{
+    background:#ccc;
+    position:absolute;
 }
-
+.hearts{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+}
 .heart{
-  position:fixed;
-  bottom:-20px;
-  font-size:24px;
-  animation:floatUp 4s linear forwards;
+    position:absolute;
+    color:red;
+    font-size:20px;
+    animation:float 4s linear infinite;
 }
-
-@keyframes floatUp{
-  to{
-    transform:translateY(-110vh);
-    opacity:0;
-  }
-}
-
-/* hide youtube player */
-#player{
-  display:none;
+@keyframes float{
+    from{transform:translateY(100vh); opacity:1;}
+    to{transform:translateY(-10vh); opacity:0;}
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🎵 Appappa – Komban (plays on YES click) -->
-<iframe
-  id="player"
-  src="https://www.youtube.com/embed/1s8Yz9S9X9M?enablejsapi=1"
-  allow="autoplay"
-  frameborder="0">
-</iframe>
-
 <div class="card">
+    <h1>Mr. Manivannan,<br>will you be my Valentine, forever? ❤️</h1>
 
-  <!-- 💋 Bubu Dudu Kiss Image -->
-  <img
-    src="https://i.imgur.com/7Z6K9Qx.png"
-    alt="Bubu Dudu Kiss"
-    class="photo"
-  >
+    <div class="today">Today</div>
+    <div class="date">14th February 2026</div>
+    <div class="valentine">Our special 9th Valentine’s Day</div>
 
-  <h1>
-    <span class="name">Mr. Manivannan</span>,<br>
-    will you be my Valentine, forever? ❤️
-  </h1>
+    <!-- Bubu Dudu Kiss Image -->
+    <img src="https://media.tenor.com/8EJf7nH0vVYAAAAC/bubu-dudu-kiss.gif">
 
-  <!-- 📅 DATE (EXACT FORMAT YOU ASKED) -->
-  <div class="date">
-    <strong>Today</strong><br>
-    14<sup>th</sup> February 2026 💘<br>
-    <strong>Our special 9<sup>th</sup> Valentine’s Day</strong>
-  </div>
-
-  <br>
-  <button id="yes" onclick="yesClick()">Yes 💖</button>
-  <button id="no" onmouseover="moveNo()">No 🙈</button>
+    <div class="buttons">
+        <button class="yes" onclick="sayYes()">Yes 💖</button>
+        <button class="no" onmouseover="moveNo()">No 🙈</button>
+    </div>
 </div>
+
+<div class="hearts" id="hearts"></div>
+
+<!-- AUDIO -->
+<audio id="song">
+    <source src="https://dl.dropboxusercontent.com/scl/fi/8p4k3d1d3x4gq/appappa.mp3?rlkey=demo&raw=1" type="audio/mpeg">
+</audio>
 
 <script>
 function moveNo(){
-  const no = document.getElementById("no");
-  no.style.left = Math.random() * (window.innerWidth - 120) + "px";
-  no.style.top  = Math.random() * (window.innerHeight - 60) + "px";
+    const noBtn=document.querySelector('.no');
+    noBtn.style.left=Math.random()*80+'%';
+    noBtn.style.top=Math.random()*80+'%';
 }
 
-function yesClick(){
-  // play song
-  const player = document.getElementById("player");
-  player.src += "&autoplay=1";
+function sayYes(){
+    document.getElementById("song").play();
 
-  document.body.innerHTML = `
-    <div style="
-      height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      flex-direction:column;
-      background:#ff5f9e;
-      color:white;
-      text-align:center;
-      font-family:'Playfair Display',serif;">
-      <h1 style="font-size:40px;">You're very lucky 💖</h1>
-      <p style="font-size:20px;">Because you have me forever 😘💍</p>
-      <p>Happy 9th Valentine’s Day ❤️</p>
-    </div>
-  `;
+    for(let i=0;i<30;i++){
+        const heart=document.createElement("div");
+        heart.className="heart";
+        heart.innerHTML="❤️";
+        heart.style.left=Math.random()*100+"%";
+        heart.style.fontSize=(20+Math.random()*20)+"px";
+        document.getElementById("hearts").appendChild(heart);
+        setTimeout(()=>heart.remove(),4000);
+    }
 
-  for(let i=0;i<60;i++){
-    setTimeout(createHeart, i*80);
-  }
-}
-
-function createHeart(){
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "❤️";
-  heart.style.left = Math.random()*100 + "vw";
-  heart.style.fontSize = (20 + Math.random()*25) + "px";
-  document.body.appendChild(heart);
-  setTimeout(()=>heart.remove(),4000);
+    alert("You are very lucky ❤️💖");
 }
 </script>
 
